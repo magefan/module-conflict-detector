@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © 2017 Ihor Vansach (ihor@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+
+<?php
+    $classRewriteConflicts = $block->getClassRewriteConflicts()
+?>
+<?php if (count($classRewriteConflicts)) { ?>
+<table class="data-grid" id="subscriberGrid_table">
+    <thead>
+        <tr>
+            <th class="data-grid-th _sortable not-sort"><span><?php echo $block->escapeHtml(__('Original Class')) ?></span>
+            </th>
+            <th class="data-grid-th _sortable not-sort"><span><?php echo $block->escapeHtml(__('Rewrites')) ?></span>
+            </th>
+            <th class="data-grid-th _sortable not-sort"><span><?php echo $block->escapeHtml(__('Conflict')) ?></span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php foreach ($classRewriteConflicts as $origClass => $item) { ?>
+        <tr data-role="row" lass="even _clickable">
+            <td>
+                <?php echo $block->escapeHtml($origClass) ?>
+            </td>
+            <td >
+                <?php foreach($item['classes'] as $info) { ?>
+                    <span style="color:<?php echo $block->getStatusColor($info['status']) ?>">
+                        <?php echo $block->escapeHtml($info['class']) ?><br/>
+                    </span>
+                <?php } ?>
+            </td>
+            <td>
+                <span class="grid-severity-<?php echo $block->getStatusClass($info['status']) ?>">
+                    <span>
+                        <?php
+                            echo $block->escapeHtml($block->getStatusLabel($info['status']));
+                        ?>
+                    </span>
+                </span>
+            </td>
+        </tr>
+        <?php } ?>
+    </tbody>
+
+</table>
+<p><br/><br/></p>
+<div class="page-title-wrapper">
+    <h4><?php echo $block->escapeHtml(__('Explanation')) ?></h4>
+</div>
+<p><span style="color:<?php echo $block->getStatusColor(1) ?>"><?php echo ucfirst($block->getStatusColor(1)) ?> class</span> is currently used instead of original class</p>
+<p><span style="color:<?php echo $block->getStatusColor(2) ?>"><?php echo ucfirst($block->getStatusColor(2)) ?> class</span> extended by "green one" class.</p>
+<p><span style="color:<?php echo $block->getStatusColor(3) ?>"><?php echo ucfirst($block->getStatusColor(3)) ?> class</span> is not in used. This means that probably there is conflict. You should check if this class doesn't contain any important changes.</p>
+<?php } else { ?>
+    <?php echo $block->escapeHtml(__('Class conflicts were not detected.')) ?>
+<?php } ?>
+
+<p>
+    <br/><br/><br/><br/>
+    Created by <a href="https://magefan.com" target="_blank">Magefan</a>.
+</p>
