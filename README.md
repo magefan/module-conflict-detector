@@ -24,6 +24,8 @@ php bin/magento setup:upgrade
 php bin/magento setup:di:compile
 php bin/magento setup:static-content:deploy
 ```
+## How To Use
+After installation please navigate to Magento 2 Admin Panel > System > Tools > Conflict Detector
 
 ## Support
 If you have any issues, please [contact us](mailto:support@magefan.com)
