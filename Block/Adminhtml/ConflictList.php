@@ -61,30 +61,41 @@ class ConflictList extends \Magento\Backend\Block\Template
 
         foreach ($conflicts as $origClass => $item) {
             $classes = array_reverse($item['classes']);
-            $originalObject = $this->getObject($origClass);
 
             $origStatus = 0;
 
-            foreach ($classes as $i => $class) {
-                $object = $this->getObject($class);
-                $objClass = get_class($object);
-
-                if (get_class($object) == get_class($originalObject)) {
+            if (count($classes) == 1) {
+                if ($this->isParentClass($classes[0], $origClass)) {
                     $status = 1; //it's OK
-                } elseif ($originalObject instanceof $objClass) {
-                    $status = 2; //it's extender
                 } else {
-                    $status = 3; //problem
+                    $status = 3;
                 }
 
-                $classes[$i] = [
-                    'class' => $class,
-                    'object' => $this->getObject($class),
+                $classes[0] = [
+                    'class' => $classes[0],
                     'status' => $status
                 ];
+                $origStatus = $status;
+            } else {
+                foreach ($classes as $i => $class) {
+                    if (!$i) {
+                        $statis = 1;
+                    } else {
+                        if ($this->isParentClass($classes[0]['class'], $class)) {
+                            $status = 2;
+                        } else {
+                            $status = 4;
+                        }
+                    }
 
-                if ($origStatus < $status) {
-                    $origStatus = $status;
+                    $classes[$i] = [
+                        'class' => $class,
+                        'status' => $status
+                    ];
+
+                    if ($origStatus < $status) {
+                        $origStatus = $status;
+                    }
                 }
             }
 
@@ -98,6 +109,43 @@ class ConflictList extends \Magento\Backend\Block\Template
     }
 
     /**
+     * Check if child class extends from parent class
+     * @param  string  $childClass
+     * @param  string  $parentClass
+     * @return boolean
+     */
+    protected function isParentClass($childClass, $parentClass)
+    {
+        $parentClass1 = $this->normilizeClass($parentClass);
+        $parentClass2 = $this->normilizeClass($parentClass . 'Interface');
+
+        $classes = class_parents($childClass);
+
+        foreach ($classes as $class) {
+            $class = $this->normilizeClass($class);
+            if ($class == $parentClass1 || $class == $parentClass2) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Add "\" at the beginning of the class name if missing
+     * @param  [type] $class [description]
+     * @return [type]        [description]
+     */
+    protected function normilizeClass($class)
+    {
+        if ($class && $class{0} != '\\') {
+            $class = '\\' . $class;
+        }
+
+        return $class;
+    }
+
+    /**
      * @param  int $status
      * @return string
      */
@@ -108,6 +156,8 @@ class ConflictList extends \Magento\Backend\Block\Template
                 return 'green';
             case 2 :
                 return 'grey';
+            case 3 :
+                return 'darkorange';
             default :
                 return 'red';
         }
@@ -123,6 +173,8 @@ class ConflictList extends \Magento\Backend\Block\Template
             case 1 :
                 return 'notice';
             case 2 :
+                return 'notice';
+            case 3 :
                 return 'notice';
             default :
                 return 'critical';
@@ -140,6 +192,8 @@ class ConflictList extends \Magento\Backend\Block\Template
                 return __('No');
             case 2 :
                 return __('Resolved');
+            case 3 :
+                return __('No');
             default :
                 return __('Yes');
         }

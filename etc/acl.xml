@@ -11,8 +11,10 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Magento_Backend::system_tools">
-                    <resource id="Magefan_ConflictDetector::elements" title="Conflict Detector" sortOrder="50" />
+                <resource id="Magento_Backend::system">
+                    <resource id="Magento_Backend::tools">
+                        <resource id="Magefan_ConflictDetector::elements" title="Conflict Detector" translate="title"  sortOrder="50" />
+                    </resource>
                 </resource>
             </resource>
         </resources>

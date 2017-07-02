@@ -14,24 +14,26 @@ class Dom extends \Magento\Framework\ObjectManager\Config\Reader\Dom
     {
         $conflicts = array();
 
-        $fileList = $this->_fileResolver->get($this->_fileName, null);
-        if (count($fileList)) {
-            foreach ($fileList as $key => $content) {
-                $dom = new \DOMDocument();
-                $res = $dom->loadXML($content);
-                if ($res) {
-                    foreach ($dom->getElementsByTagName('preference') as $preference) {
-                        $for = $preference->getAttribute('for');
-                        $type = $preference->getAttribute('type');
-                        if ($for && $type) {
-                            if (!isset($conflicts[$for])) {
-                                $conflicts[$for] = [
-                                    'classes' => []
-                                ];
-                            }
+        foreach (['global', 'adminhtml', 'frontend'] as $scope) {
+            $fileList = $this->_fileResolver->get($this->_fileName, $scope);
+            if (count($fileList)) {
+                foreach ($fileList as $key => $content) {
+                    $dom = new \DOMDocument();
+                    $res = $dom->loadXML($content);
+                    if ($res) {
+                        foreach ($dom->getElementsByTagName('preference') as $preference) {
+                            $for = $preference->getAttribute('for');
+                            $type = $preference->getAttribute('type');
+                            if ($for && $type) {
+                                if (!isset($conflicts[$for])) {
+                                    $conflicts[$for] = [
+                                        'classes' => []
+                                    ];
+                                }
 
-                            if (!in_array($type, $conflicts[$for]['classes'])) {
-                                $conflicts[$for]['classes'][] = $type;
+                                if (!in_array($type, $conflicts[$for]['classes'])) {
+                                    $conflicts[$for]['classes'][] = $type;
+                                }
                             }
                         }
                     }

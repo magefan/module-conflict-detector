@@ -56,7 +56,9 @@
 </div>
 <p><span style="color:<?php echo $block->getStatusColor(1) ?>"><?php echo ucfirst($block->getStatusColor(1)) ?> class</span> is currently used instead of original class</p>
 <p><span style="color:<?php echo $block->getStatusColor(2) ?>"><?php echo ucfirst($block->getStatusColor(2)) ?> class</span> extended by "green one" class.</p>
-<p><span style="color:<?php echo $block->getStatusColor(3) ?>"><?php echo ucfirst($block->getStatusColor(3)) ?> class</span> is not in used. This means that probably there is conflict. You should check if this class doesn't contain any important changes.</p>
+<p><span style="color:<?php echo $block->getStatusColor(3) ?>"><?php echo ucfirst($block->getStatusColor(3)) ?> class</span>  is currently used, but it does not extends from original class.</p>
+<p><span style="color:<?php echo $block->getStatusColor(4) ?>"><?php echo ucfirst($block->getStatusColor(4)) ?> class</span> is not in used. This means that probably there is conflict. You should check if this class doesn't contain any important changes.</p>
+<p><em>* Please keep in mind that Conflict Detector is in Beta state, please double check the results.</em></p>
 <?php } else { ?>
     <?php echo $block->escapeHtml(__('Class conflicts were not detected.')) ?>
 <?php } ?>
