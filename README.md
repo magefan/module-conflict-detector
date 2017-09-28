@@ -3,7 +3,7 @@
 Magento 2 Conflict Detector extension allows you to detect class rewrite conflicts easy in [Magento 2](http://magento.com/) Store.
 
 ## Requirements
-  * Magento Community Edition 2.1.x or Magento Enterprise Edition 2.1.x
+  * Magento Community Edition 2.1.x-2.2.x or Magento Enterprise Edition 2.1.x-2.2.x
 
 ## Installation Method 1 - Installing via composer
   * Open command line
