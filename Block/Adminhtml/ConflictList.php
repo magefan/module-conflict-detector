@@ -79,7 +79,7 @@ class ConflictList extends \Magento\Backend\Block\Template
             } else {
                 foreach ($classes as $i => $class) {
                     if (!$i) {
-                        $statis = 1;
+                        $status = 1;
                     } else {
                         if ($this->isParentClass($classes[0]['class'], $class)) {
                             $status = 2;
