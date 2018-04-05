@@ -119,7 +119,11 @@ class ConflictList extends \Magento\Backend\Block\Template
         $parentClass1 = $this->normilizeClass($parentClass);
         $parentClass2 = $this->normilizeClass($parentClass . 'Interface');
 
-        $classes = class_parents($childClass);
+        try {
+            $classes = class_parents($childClass);    
+        } catch (\Exception $e) {
+           $classes = [];
+        }
 
         foreach ($classes as $class) {
             $class = $this->normilizeClass($class);
