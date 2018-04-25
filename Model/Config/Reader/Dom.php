@@ -12,7 +12,7 @@ class Dom extends \Magento\Framework\ObjectManager\Config\Reader\Dom
 {
     public function getClassRewriteConflicts()
     {
-        $conflicts = array();
+        $conflicts = [];
 
         foreach (['global', 'adminhtml', 'frontend'] as $scope) {
             $fileList = $this->_fileResolver->get($this->_fileName, $scope);
@@ -45,7 +45,7 @@ class Dom extends \Magento\Framework\ObjectManager\Config\Reader\Dom
             $hasNoMagentoClasses = false;
             foreach ($item['classes'] as $class) {
                 if (strpos($class, 'Magento\\') !== 0 && strpos($class, '\\Magento\\') !== 0) {
-                   $hasNoMagentoClasses = true;
+                    $hasNoMagentoClasses = true;
                 }
             }
 

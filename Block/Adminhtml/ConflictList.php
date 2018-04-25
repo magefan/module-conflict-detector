@@ -103,7 +103,7 @@ class ConflictList extends \Magento\Backend\Block\Template
             $conflicts[$origClass]['status'] = $origStatus;
         };
 
-        uasort($conflicts, array($this, 'sortConflicts'));
+        uasort($conflicts, [$this, 'sortConflicts']);
 
         return $conflicts;
     }
@@ -120,9 +120,9 @@ class ConflictList extends \Magento\Backend\Block\Template
         $parentClass2 = $this->normilizeClass($parentClass . 'Interface');
 
         try {
-            $classes = class_parents($childClass);    
+            $classes = class_parents($childClass);
         } catch (\Exception $e) {
-           $classes = [];
+            $classes = [];
         }
 
         foreach ($classes as $class) {
@@ -156,13 +156,13 @@ class ConflictList extends \Magento\Backend\Block\Template
     public function getStatusColor($status)
     {
         switch ($status) {
-            case 1 :
+            case 1:
                 return 'green';
-            case 2 :
+            case 2:
                 return 'grey';
-            case 3 :
+            case 3:
                 return 'darkorange';
-            default :
+            default:
                 return 'red';
         }
     }
@@ -174,13 +174,13 @@ class ConflictList extends \Magento\Backend\Block\Template
     public function getStatusClass($status)
     {
         switch ($status) {
-            case 1 :
+            case 1:
                 return 'notice';
-            case 2 :
+            case 2:
                 return 'notice';
-            case 3 :
+            case 3:
                 return 'notice';
-            default :
+            default:
                 return 'critical';
         }
     }
@@ -192,13 +192,13 @@ class ConflictList extends \Magento\Backend\Block\Template
     public function getStatusLabel($status)
     {
         switch ($status) {
-            case 1 :
+            case 1:
                 return __('No');
-            case 2 :
+            case 2:
                 return __('Resolved');
-            case 3 :
+            case 3:
                 return __('No');
-            default :
+            default:
                 return __('Yes');
         }
     }
