@@ -28,7 +28,7 @@ class Index extends \Magento\Backend\App\Action
     {
         $this->_view->loadLayout();
         $this->_setActiveMenu('Magefan_ConflictDetector::elements');
-        $title = __('Conflict Detector (beta)');
+        $title = __('Conflict Detector');
         $this->_view->getPage()->getConfig()->getTitle()->prepend($title);
         $this->_addBreadcrumb($title, $title);
         $this->_view->renderLayout();
