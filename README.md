@@ -8,11 +8,16 @@ Magento 2 Conflict Detector extension allows you to detect class rewrite conflic
 ## Installation Method 1 - Installing via composer
   * Open command line
   * Using command "cd" navigate to your magento2 root directory
-  * Run command: composer require magefan/module-conflict-detector
-
-  
+  * Run commands:
+```
+composer require magefan/module-conflict-detector
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy
+```
 
 ## Installation Method 2 - Installing using archive
+  * Install the [Magefan Community Extension](https://github.com/magefan/module-community) first
   * Download [ZIP Archive](https://github.com/magefan/module-conflict-detector/archive/master.zip)
   * Extract files
   * In your Magento 2 root directory create folder app/code/Magefan/ConflictDetector
