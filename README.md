@@ -41,7 +41,6 @@ The code is licensed under [Open Software License ("OSL") v. 3.0](http://opensou
   * [Magento 2 GeoIP Switcher Extension](https://magefan.com/magento-2-geoip-switcher-extension)
   * [Magento 2 YouTube Widget Extension](https://magefan.com/magento2-youtube-extension)
   * [Magento 2 Product Widget Advanced Extension](https://magefan.com/magento-2-product-widget)
-  * [Magento 2 Conflict Detector Extension](https://magefan.com/magento2-conflict-detector)
   * [Magento 2 Lazy Load Extension](https://magefan.com/magento-2-image-lazy-load-extension)
   * [Magento 2 Rocket JavaScript Extension](https://magefan.com/rocket-javascript-deferred-javascript)
   * [Magento 2 CLI Extension](https://magefan.com/magento2-cli-extension)
