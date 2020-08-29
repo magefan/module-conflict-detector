@@ -142,7 +142,7 @@ class ConflictList extends \Magento\Backend\Block\Template
      */
     protected function normilizeClass($class)
     {
-        if ($class && $class{0} != '\\') {
+        if ($class && $class[0] != '\\') {
             $class = '\\' . $class;
         }
 
