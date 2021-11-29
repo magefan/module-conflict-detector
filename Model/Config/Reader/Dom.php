@@ -26,13 +26,14 @@ class Dom extends \Magento\Framework\ObjectManager\Config\Reader\Dom
                             $type = $preference->getAttribute('type');
                             if ($for && $type) {
                                 if (!isset($conflicts[$for])) {
-                                    $conflicts[$for] = [
-                                        'classes' => []
-                                    ];
+                                    $conflicts[$for] = [];
                                 }
 
-                                if (!in_array($type, $conflicts[$for]['classes'])) {
-                                    $conflicts[$for]['classes'][] = $type;
+                                if (!isset($conflicts[$for][$scope])) {
+                                    $conflicts[$for][$scope] = [];
+                                }
+                                if (!in_array($type, $conflicts[$for][$scope])) {
+                                    $conflicts[$for][$scope][] = $type;
                                 }
                             }
                         }
@@ -41,23 +42,45 @@ class Dom extends \Magento\Framework\ObjectManager\Config\Reader\Dom
             }
         }
 
-        foreach ($conflicts as $origClass => $item) {
-            $hasNoMagentoClasses = false;
-            foreach ($item['classes'] as $class) {
-                if (strpos($class, 'Magento\\') !== 0 && strpos($class, '\\Magento\\') !== 0) {
-                    $hasNoMagentoClasses = true;
+        foreach ($conflicts as $for => $scopeClasses) {
+            foreach ($scopeClasses as $scope => $classes) {
+                $hasNoMagentoClasses = false;
+                foreach ($classes as $class) {
+                    if (strpos($class, 'Magento\\') !== 0 && strpos($class, '\\Magento\\') !== 0) {
+                        $hasNoMagentoClasses = true;
+                    }
                 }
-            }
 
-            if (!$hasNoMagentoClasses) {
-                unset($conflicts[$origClass]);
-            }
+                if (!$hasNoMagentoClasses) {
+                    unset($conflicts[$for][$scope]);
+                }
 
-            if (strpos($origClass, 'Interface') !== false && count($item['classes']) < 2) {
-                unset($conflicts[$origClass]);
+                if ($scope != 'global') {
+                    $isInGlobal = (isset($conflicts[$for]['global']) && count($conflicts[$for]['global']));
+                    if (!$isInGlobal && count($classes) < 2) {
+                        unset($conflicts[$for][$scope]);
+                    }
+                }
+
+                if (strpos($for, 'Interface') !== false && count($classes) < 2) {
+                    unset($conflicts[$for][$scope]);
+                }
             }
         }
 
-        return $conflicts;
+        $result = [];
+        foreach ($conflicts as $for => $scopeClasses) {
+            foreach ($scopeClasses as $scope => $classes) {
+                if (!isset($result[$for])) {
+                    $result[$for] = [
+                        'classes' => []
+                    ];
+                }
+
+                $result[$for]['classes'] = array_merge($result[$for]['classes'], $classes);
+            }
+        }
+
+        return $result;
     }
 }
