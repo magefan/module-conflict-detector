@@ -234,7 +234,7 @@ class ConflictList extends \Magento\Backend\Block\Template
         return (bool)$this->objectManager->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
             ->getValue(
                 'mfconflictdetector/general/enabled',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
             );
     }
 }
