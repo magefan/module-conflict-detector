@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Magefan (support@magefan.com). All rights reserved.
- * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
  *
  * Glory to Ukraine! Glory to the heroes!
  */
@@ -224,5 +224,17 @@ class ConflictList extends \Magento\Backend\Block\Template
     protected function sortConflicts($a, $b)
     {
         return $a['status'] <= $b['status'];
+    }
+
+    /**
+     * @return bool
+     */
+    final public function isEnabled()
+    {
+        return (bool)$this->objectManager->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+            ->getValue(
+                'mfconflictdetector/general/enabled',
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            );
     }
 }

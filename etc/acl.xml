@@ -2,7 +2,7 @@
 <!--
 /**
  * Copyright © Magefan (support@magefan.com). All rights reserved.
- * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
  *
  * Glory to Ukraine! Glory to the heroes!
  */
@@ -14,6 +14,13 @@
                 <resource id="Magento_Backend::system">
                     <resource id="Magento_Backend::tools">
                         <resource id="Magefan_ConflictDetector::elements" title="Conflict Detector" translate="title"  sortOrder="50" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Magefan_ConflictDetector::config" title="Conflict Detector Section" />
+                        </resource>
                     </resource>
                 </resource>
             </resource>
