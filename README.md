@@ -4,10 +4,13 @@
 [![Total Downloads](https://poser.pugx.org/magefan/module-conflict-detector/downloads)](https://packagist.org/packages/magefan/module-conflict-detector)
 [![Latest Stable Version](https://poser.pugx.org/magefan/module-conflict-detector/v/stable)](https://packagist.org/packages/magefan/module-conflict-detector)
 
+<img width="150" height="100" src="https://magefan.com/media/wysiwyg/made_in_ukraine.jpg">
+
+
 Magento 2 Conflict Detector extension allows you to detect class rewrite conflicts easy in [Magento 2](http://magento.com/) Store.
 
 
-<a href="https://magefan.com/magento2-conflict-detector"><img width="300" height="60" src="https://cm.magefan.com/mf_webp/png/media/wysiwyg/DOWNLOAD_NOW.webp"></a>
+<a href="https://magefan.com/magento2-conflict-detector"><img width="190" height="70" src="https://magefan.com/media/wysiwyg/download-now_1.png"></a>
 
 ## Requirements
   * Magento Community Edition 2.1.x-2.4.x or Magento Enterprise Edition 2.1.x-2.4.x
