@@ -219,11 +219,11 @@ class ConflictList extends \Magento\Backend\Block\Template
     /**
      * @param  array $a
      * @param  array $b
-     * @return bool
+     * @return int
      */
     protected function sortConflicts($a, $b)
     {
-        return $a['status'] <= $b['status'];
+        return $a['status'] <=> $b['status'];
     }
 
     /**
