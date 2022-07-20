@@ -2,10 +2,10 @@
     "name": "magefan/module-conflict-detector",
     "description": "Detect extension conflicts",
     "require": {
-        "magefan/module-community" : ">=2.1.6"
+        "magefan/module-community" : ">=2.1.10"
     },
     "type": "magento2-module",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {
