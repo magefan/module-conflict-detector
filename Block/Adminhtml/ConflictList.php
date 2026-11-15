@@ -27,7 +27,7 @@ class ConflictList extends \Magento\Backend\Block\Template
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected $objectmanager;
+    protected $objectManager;
 
     /**
      * @var array
