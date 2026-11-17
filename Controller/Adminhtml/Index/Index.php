@@ -22,7 +22,7 @@ class Index extends \Magento\Backend\App\Action
 
     /**
      * Action execute
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return void
      */
     public function execute()
     {
